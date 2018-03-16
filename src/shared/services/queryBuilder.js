@@ -1,4 +1,25 @@
+import QualifierValidator from '@/shared/validators/qualifier';
 import { isArray } from 'lodash';
+
+/**
+ * @function stringifySimpleQualifier
+ * @param {object} qualifier O qualifier.
+ * @returns {string} A query string do qualifier com operador simples.
+ */
+const stringifySimpleQualifier = (qualifier) => {
+  const data = isArray(qualifier.data) ? qualifier.data[0] : qualifier.data;
+  return `${qualifier.type}:${qualifier.operator}${data}`;
+};
+
+/**
+ * @function stringifyComplexQualifier
+ * @param {object} qualifier O qualifier.
+ * @returns {string} A query string do qualifier com operador complexo.
+ */
+const stringifyComplexQualifier = (qualifier) => {
+  const complexOperation = `${qualifier.data[0]}${qualifier.operator}${qualifier.data[1]}`;
+  return `${qualifier.type}:${complexOperation}`;
+};
 
 const QueryBuilder = {
 
@@ -11,7 +32,7 @@ const QueryBuilder = {
    * @returns {string} A query string gerada.
    */
   stringifyQualifiers(qualifiers) {
-
+    return qualifiers;
   },
 
   /**
@@ -21,14 +42,16 @@ const QueryBuilder = {
    * @returns {string} A query string gerada.
    */
   stringifyQualifier(qualifier) {
-
-    if (!qualifier) {
+    if (!QualifierValidator.isValidQualifier(qualifier)) {
       return '';
     }
 
-    let queryString = '';
+    if (QualifierValidator.hasSimpleOperator(qualifier)) {
+      return stringifySimpleQualifier(qualifier);
+    }
 
-  }
+    return stringifyComplexQualifier(qualifier);
+  },
 
   /**
    * @function validateQualifierObject
@@ -37,12 +60,10 @@ const QueryBuilder = {
    * @returns {boolean} Se o QualifierObject é válido ou não.
    */
   validateQualifierObject(qualifierObject) {
-    if (!qualifierObject) return false;
+    if (!QualifierValidator.isValidQualifierObject(qualifierObject)) return false;
 
-
-
-  }
-
-}
+    return true;
+  },
+};
 
 export default QueryBuilder;
