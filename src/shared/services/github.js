@@ -4,7 +4,7 @@ const GithubService = {
    * @description Retorna a URL base da API pública do Github.com.
    * @returns {string} A URL base da API pública do Github.com.
    */
-  getBaseUrl: () => { return process.env.GITHUB_API_BASE_URL },
+  getBaseUrl: () => process.env.GITHUB_API_BASE_URL,
 
   /**
    * @function buildUserSearchUrl
@@ -15,14 +15,15 @@ const GithubService = {
   buildUserSearchUrl(queryObject) {
 
   },
+
   search: {
     Users(query = {}) {
       console.log(query);
-    }
+    },
   },
   searchUser(query) {
     console.log(query);
-  }
-}
+  },
+};
 
 export default GithubService;
