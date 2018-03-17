@@ -1,68 +1,13 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a :href="githubUrl" target="_blank">
-          Github
-        </a>
-      </li>
-      <li>
-        <a href="https://vuejs.org" target="_blank">
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" target="_blank">
-          Forum
-        </a>
-      </li>
-      <li>
-        <a href="https://chat.vuejs.org" target="_blank">
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" target="_blank">
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a href="http://vuejs-templates.github.io/webpack/" target="_blank">
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a href="http://router.vuejs.org/" target="_blank">
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a href="http://vuex.vuejs.org/" target="_blank">
-          vuex
-        </a>
-      </li>
-      <li>
-        <a href="http://vue-loader.vuejs.org/" target="_blank">
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a href="https://github.com/vuejs/awesome-vue" target="_blank">
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+    <h1 :class="username.length ? 'fadein' : 'hidden'">{{ 'Depois' }}</h1>
+    <h2 :class="!username.length ? 'fadein' : 'hidden'">Antes</h2>
   </div>
 </template>
 
 <script>
 import GithubService from '@/shared/services/github';
+import GithubRepository from '@/shared/repositories/github';
 
 export default {
   name: 'HelloWorld',
@@ -70,7 +15,11 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App',
       githubUrl: GithubService.getBaseUrl(),
+      username: '',
     };
+  },
+  beforeCreate() {
+    GithubRepository.Users.Get('otaviotech').then((res) => { this.username = res.data.login; });
   },
 };
 
@@ -95,6 +44,22 @@ export default {
 
   a {
     color: #42b983;
+  }
+
+  /* h1 { display: block; }; */
+
+  .fadein {
+    transition: 0.6s;
+    animation-delay: 0.6s;
+    height: 10px;
+    opacity: 100;
+  }
+
+  .hidden {
+    height: 0px;
+    animation-delay: 0.6s;
+    opacity: 0;
+    transition: 0.6s;
   }
 
 </style>

@@ -43,5 +43,6 @@ export default class QueryObjectFixture {
         data: '0', // numeric
       },
     ];
+    this.queryString = 'q=joao+type:user+in:login+repos:>0+location:Brazil+language:php+created:2000-01-01..2020-01-01+followers:0..*&sort=repositories&order=asc';
   }
 }
