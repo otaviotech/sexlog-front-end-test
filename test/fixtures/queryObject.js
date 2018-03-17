@@ -9,28 +9,28 @@ export default class QueryObjectFixture {
       {
         type: 'type', // user | org
         operator: '=',
-        data: ['user'],
+        data: 'user',
       },
       {
         type: 'in',
         operator: '=',
-        data: ['login'], // login | fullname | email
+        data: 'login', // login | fullname | email
       },
       {
         type: 'repos',
         operator: '>',
-        data: ['0'], // numeric
+        data: '0', // numeric
       },
 
       {
         type: 'location',
         operator: '=',
-        data: ['Brazil'], // country name
+        data: 'Brazil', // country name
       },
       {
         type: 'language',
         operator: '=',
-        data: ['php'], // programming language
+        data: 'php', // programming language
       },
       {
         type: 'created',
@@ -40,7 +40,7 @@ export default class QueryObjectFixture {
       {
         type: 'followers',
         operator: '..*', // numeric (date) > | < | = | >= | <= | ..* | *.. | ..
-        data: ['0'], // numeric
+        data: '0', // numeric
       },
     ];
   }

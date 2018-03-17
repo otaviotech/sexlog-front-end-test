@@ -112,7 +112,7 @@ const hasValidData = (qualifierObject) => {
   }
 
   if (operatorType === 'complex') {
-    return isArray(qualifierObject.data);
+    return isArray(qualifierObject.data) && qualifierObject.data.length === 2;
   }
 
   return false;
@@ -121,6 +121,7 @@ const hasValidData = (qualifierObject) => {
 const isValidQualifierType = type => isString(type);
 
 const isValidQualifierObject = qualifier => qualifier.type && qualifier.operator && qualifier.data;
+
 
 /**
  * @function hasSimpleOperator
@@ -131,12 +132,51 @@ const isValidQualifierObject = qualifier => qualifier.type && qualifier.operator
 const hasSimpleOperator = qualifierObject => getOperatorType(qualifierObject.operator) === 'simple';
 
 /**
+ * @function allIndexesAreNumbers
+ * @description Informa se todos os itens de um array são números.
+ * @param {array} arr Array para validar.
+ * @returns {boolean} Se todos os itens do array são númreros.
+ */
+const allIndexesAreNumbers = (arr) => {
+  let result = true;
+  arr.forEach((i) => {
+    if (!isNumber(i)) {
+      result = false;
+    }
+  });
+  return result;
+};
+
+/**
  * @function hasComplexOperator
  * @description Informa se o operador é do tipo complexo.
  * @param {object} qualifierObject O qualifier.
  * @returns {boolean} Se o operador é do tipo complexo.
  */
 const hasComplexOperator = qualifierObject => getOperatorType(qualifierObject.operator) === 'complex';
+
+const isValidQualifier = (qualifier) => {
+  const typeIsValid = isValidQualifierType(qualifier.type);
+  const dataIsValid = hasValidData(qualifier);
+  const operatorIsValid = hasValidOperator(qualifier);
+
+  if (!typeIsValid || !dataIsValid || !operatorIsValid) {
+    return false;
+  }
+
+  if (hasComplexOperator(qualifier)) {
+    if (moment(qualifier.data[0]).isValid()) {
+      return moment(qualifier.data[0]).isValid() && moment(qualifier.data[1]).isValid();
+    }
+    return isArray(qualifier.data) && qualifier.data.length === 2 && allIndexesAreNumbers(qualifier.data);
+  }
+
+  if (hasSimpleOperator(qualifier)) {
+    return true;
+  }
+
+  return false;
+};
 
 const QualifierValidator = {
   hasValidOperator,
@@ -145,6 +185,7 @@ const QualifierValidator = {
   isValidQualifierObject,
   hasSimpleOperator,
   hasComplexOperator,
+  isValidQualifier,
 };
 
 export default QualifierValidator;
