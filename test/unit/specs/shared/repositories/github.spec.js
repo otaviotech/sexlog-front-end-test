@@ -19,6 +19,8 @@ describe('Github Repository', () => {
   });
 
   describe('API de usuários.', () => {
+    const username = 'joao';
+
     describe('Pesquisar um usuário', () => {
       it('Deve requisitar a url da api do Github corretamente.', () => {
         const searchUsersUrlRegex = new RegExp(`${process.env.GITHUB_API_BASE_URL}/search/users?.+`);
@@ -42,9 +44,6 @@ describe('Github Repository', () => {
     });
 
     describe('Obter informações de um usuário especifico', () => {
-
-      const username = 'joao';
-
       it('Deve requisitar a url da api do Github corretamente', () => {
         const getUsersUrlRegex = new RegExp(`${process.env.GITHUB_API_BASE_URL}/users/.+`);
 
@@ -62,6 +61,34 @@ describe('Github Repository', () => {
           });
         }).catch((err) => {
           expect(err.status).not.toMatch(/2\d\d/);
+        });
+      });
+    });
+
+    describe('Obter a lista de repositórios de um usuário especifico', () => {
+      it('Deve requisitar a url da api do Github corretamente', () => {
+        const getUserReposUrlRegex = new RegExp(`${process.env.GITHUB_API_BASE_URL}/users/${username}/repos`);
+
+        githubClientMock.onGet(getUserReposUrlRegex).reply(200, [{
+          id: 103862925,
+          name: 'hello-world',
+          full_name: `${username}/hello-world`,
+          owner: {
+            login: username,
+          },
+        }]);
+
+        GithubRepository.Users.GetUserRepos(username).then((res) => {
+          expect(res.data).toEqual([{
+            id: 103862925,
+            name: 'hello-world',
+            full_name: `${username}/hello-world`,
+            owner: {
+              login: username,
+            },
+          }]);
+        }).catch((err) => {
+          expect(err.response.status.toString()).not.toMatch(/2\d\d/);
         });
       });
     });

@@ -37,12 +37,25 @@ const getUser = (username) => {
 };
 
 /**
+ * @function getUserRepos
+ * @description Obtém a lista de repositórios de um usuário especifico.
+ * @param {string} username O username do usuário.
+ * @returns {promise} Promise do axios.
+ */
+const getUserRepos = (username) => {
+  const url = `${process.env.GITHUB_API_BASE_URL}${BASE_USER_URL}/${username}/repos`;
+  const result = GithubClient.get(url);
+  return result;
+};
+
+/**
  * @property Users
  * @description Contém as ações na api de usuários do Github.
  */
 const Users = {
   Search: searchUsers,
   Get: getUser,
+  GetUserRepos: getUserRepos,
 };
 
 /**
