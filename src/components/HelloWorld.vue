@@ -1,16 +1,24 @@
 <template>
-  <div class="hello">
-    <h1 :class="username.length ? 'fadein' : 'hidden'">{{ 'Depois' }}</h1>
-    <h2 :class="!username.length ? 'fadein' : 'hidden'">Antes</h2>
+  <div>
+    <!-- <h1 :class="username.length ? 'fadein' : 'hidden'">{{ 'Depois' }}</h1>
+    <h2 :class="!username.length ? 'fadein' : 'hidden'">Antes</h2> -->
+    <div class="flex">
+      <query-builder></query-builder>
+    </div>
+
   </div>
 </template>
 
 <script>
 import GithubService from '@/shared/services/github';
-import GithubRepository from '@/shared/repositories/github';
+import QueryBuilder from './queryBuilder/QueryBuilder';
+// import GithubRepository from '@/shared/repositories/github';
 
 export default {
   name: 'HelloWorld',
+  components: {
+    [QueryBuilder.name]: QueryBuilder,
+  },
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
@@ -19,10 +27,9 @@ export default {
     };
   },
   beforeCreate() {
-    GithubRepository.Users.Get('otaviotech').then((res) => { this.username = res.data.login; });
+    // GithubRepository.Users.Get('otaviotech').then((res) => { this.username = res.data.login; });
   },
 };
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
