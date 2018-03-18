@@ -23,6 +23,7 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.12",
     "autoprefixer": "^7.1.2",
     "axios": "^0.18.0",
     "axios-mock-adapter": "^1.14.1",
