@@ -4,7 +4,7 @@
       <img :src="avatarUrl" :alt="login + '-avatar'">
     </div>
     <div class="information-wrapper">
-      <p class="username">{{ name }} ({{ login }})</p>
+      <p class="username">{{ login }}</p>
       <hr />
       <ul>
         <li>
@@ -26,7 +26,7 @@ export default {
   props: {
     name: {
       type: String,
-      required: true,
+      required: false,
     },
     login: {
       type: String,
@@ -79,6 +79,7 @@ export default {
 
   .gh-card .information-wrapper ul li
     padding: 3px 5px
+    text-align: center
 
   .gh-card .information-wrapper ul li a
     font-size: 0.9em

@@ -4,13 +4,16 @@
       <cabecalho-octocat></cabecalho-octocat>
       <hr />
       <query-builder @submit="performSearch"></query-builder>
-      <github-user-card
-        name="Otávio Araújo"
-        login="otaviotech"
-        githubPageLink=""
-        repositoriesPageLink=""
-        avatarUrl="https://avatars2.githubusercontent.com/u/23391867?v=4">
-      </github-user-card>
+      <div v-if="userSearchResults" class="result-grid">
+        <div v-for="res in userSearchResults" :key="res.id" class="card-wrapper">
+          <github-user-card
+            :login="res.login"
+            :githubPageLink="res.html_url"
+            :repositoriesPageLink="res.repos_url"
+            :avatarUrl="res.avatar_url">
+          </github-user-card>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -47,5 +50,15 @@ export default {
     display: flex
     margin: 0 auto
     flex-wrap: wrap
+
+  .result-grid
+    display: flex
+    flex-wrap: wrap
+    flex-direction: row
+    align-items: center
+    justify-content: center
+
+  .card-wrapper
+    min-width: 300px
 
 </style>

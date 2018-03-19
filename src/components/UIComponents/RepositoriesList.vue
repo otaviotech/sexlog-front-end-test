@@ -16,7 +16,8 @@
           </thead>
           <tbody>
             <tr v-for="rep in sortedRepos" :key="rep.id">
-              <td><a :href="rep.html_url" target="_blank">{{ rep.name }}</a></td>
+              <td>
+                <router-link :to="getRouteObject(rep)">User</router-link></td>
               <td>{{ rep.watchers_count }}</td>
               <td>{{ rep.stargazers_count }}</td>
               <td>{{ rep.forks_count }}</td>
@@ -52,6 +53,12 @@ export default {
     sortBy(criteria) {
       this.sortingStatus[criteria] = this.sortingStatus[criteria] === 'asc' ? 'desc' : 'asc';
       this.sortedRepos = orderBy(this.repositories, [criteria], this.sortingStatus[criteria]);
+    },
+    getRouteObject(rep) {
+      return {
+        name: 'RepositoryDetail',
+        params: { username: rep.owner.login, repository: rep.name },
+      };
     },
   },
   beforeMount() {
@@ -122,5 +129,4 @@ export default {
 
   .card-body
     overflow-y: auto
-
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="repo-info" v-if="repository">
     <h1>{{ repository.name }}
-      <a :href="repository.html_url">
+      <a :href="repository.html_url" target="_blank">
         <i class="fa fa-external-link-alt"></i>
       </a>
     </h1>
