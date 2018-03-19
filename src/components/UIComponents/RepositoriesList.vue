@@ -8,15 +8,15 @@
         <table class="table">
           <thead>
             <tr>
-              <th><a href="#" @click="sortBy('name')">Nome</a></th>
-              <th><a href="#" @click="sortBy('watchers_count')">Watchs</a></th>
-              <th><a href="#" @click="sortBy('stargazers_count')">Estrelas</a></th>
-              <th><a href="#" @click="sortBy('forks_count')">Forks</a></th>
+              <th><span @click="sortBy('name')">Nome</span></th>
+              <th><span @click="sortBy('watchers_count')">Watchs</span></th>
+              <th><span @click="sortBy('stargazers_count')">Estrelas</span></th>
+              <th><span @click="sortBy('forks_count')">Forks</span></th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="rep in sortedRepos" :key="rep.id">
-              <td>{{ rep.name }}</td>
+              <td><a :href="rep.html_url" target="_blank">{{ rep.name }}</a></td>
               <td>{{ rep.watchers_count }}</td>
               <td>{{ rep.stargazers_count }}</td>
               <td>{{ rep.forks_count }}</td>
@@ -41,14 +41,21 @@ export default {
   },
   data: () => ({
     sortedRepos: [],
+    sortingStatus: {
+      name: 'asc',
+      watchers_count: 'asc',
+      stargazers_count: 'asc',
+      forks_count: 'asc',
+    },
   }),
   methods: {
     sortBy(criteria) {
-      this.sortedRepos = orderBy(this.repositories, criteria);
+      this.sortingStatus[criteria] = this.sortingStatus[criteria] === 'asc' ? 'desc' : 'asc';
+      this.sortedRepos = orderBy(this.repositories, [criteria], this.sortingStatus[criteria]);
     },
   },
   beforeMount() {
-    this.sortedRepos = this.repositories;
+    this.sortBy('stargazers_count');
   },
 };
 </script>
@@ -57,7 +64,7 @@ export default {
   @import '~open-color/open-color.scss'
 
   .foo
-    width: 90%
+    padding: 20px
     margin: 0 auto
 
   .card
@@ -103,5 +110,17 @@ export default {
     text-align: center
     background-color: $oc-gray-4
 
+  table th span
+    cursor: pointer
+    transition: 0.3s
+    &:hover
+      color: $oc-gray-6
+      transition: 0.3s
+
+  table tbody tr td a
+    color: $oc-gray-8
+
+  .card-body
+    overflow-y: auto
 
 </style>

@@ -5,11 +5,13 @@ const GithubClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/vnd.github.v3+json',
+    Authorization: 'Basic b3RhdmlvdGVjaDpSZnB1YWd1aXRhcjE=',
   },
 });
 
 const BASE_SEARCH_URL = '/search';
 const BASE_USER_URL = '/users';
+const BASE_REPOSITORY_URL = '/repos';
 const BASE_USER_SEARCH_URL = `${BASE_SEARCH_URL}${BASE_USER_URL}?`;
 
 /**
@@ -49,6 +51,19 @@ const getUserRepos = (username) => {
 };
 
 /**
+ * @function getRepository
+ * @description Obtém as informações de um repositório específico.
+ * @param {string} username O username do usuário.
+ * @param {string} rep O nome do repositório.
+ * @returns {promise} Promise do axios.
+ */
+const getRepository = (username, rep) => {
+  const url = `${process.env.GITHUB_API_BASE_URL}${BASE_REPOSITORY_URL}/${username}/${rep}`;
+  const result = GithubClient.get(url);
+  return result;
+};
+
+/**
  * @property Users
  * @description Contém as ações na api de usuários do Github.
  */
@@ -59,12 +74,21 @@ const Users = {
 };
 
 /**
+ * @property Repositories
+ * @description Contém as ações na api de usuários do Github.
+ */
+const Repositories = {
+  Get: getRepository,
+};
+
+/**
  * @property GithubRepository
  * @description API pública.
  * @default
  */
 const GithubRepository = {
   Users,
+  Repositories,
   GithubClient,
 };
 
