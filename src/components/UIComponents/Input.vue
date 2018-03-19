@@ -1,15 +1,17 @@
 <template>
-  <div :class="wrapperClass">
-    <div>
-      <label :for="inputId" :class="labelClass" :id="labelId">{{ labelText }}</label>
-    </div>
-    <div :class="inputWrapperClass">
-
-      <input type="text"
-             :class="inputClass"
-             :id="inputId"
-             :placeholder="inputPlaceholder"
-             @input="onTextFieldInput" />
+  <div class="root">
+    <div :class="wrapperClass" class="wrapper-class">
+      <div :class="labelWrapperClass" class="label-wrapper-class">
+        <label :for="inputId" :class="labelClass" :id="labelId">{{ labelText }}</label>
+      </div>
+      <div :class="inputWrapperClass">
+        <input type="text"
+              :class="inputClass"
+              class="input-class"
+              :id="inputId"
+              :placeholder="inputPlaceholder"
+              @input="onTextFieldInput" />
+      </div>
     </div>
   </div>
 </template>
@@ -63,6 +65,17 @@ export default {
 };
 </script>
 
-<style>
+<style lang="sass">
+  // .root
+  //   display: flex
+  //   flex-direction: row
+  //   align-items: center
+  //   flex-wrap: wrap
 
+  // .wrapper-class, .label-wrapper-class, .inputWrapperClass
+  //   flex: 1
+  //   display: flex
+  //   flex-direction: column
+
+  // , .label-wrapper-class, .inputWrapperClass
 </style>

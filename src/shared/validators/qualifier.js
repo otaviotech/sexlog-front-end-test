@@ -168,7 +168,9 @@ const isValidQualifier = (qualifier) => {
     if (moment(qualifier.data[0]).isValid()) {
       return moment(qualifier.data[0]).isValid() && moment(qualifier.data[1]).isValid();
     }
-    return isArray(qualifier.data) && qualifier.data.length === 2 && allIndexesAreNumbers(qualifier.data);
+    return isArray(qualifier.data)
+            && qualifier.data.length === 2
+            && allIndexesAreNumbers(qualifier.data);
   }
 
   if (hasSimpleOperator(qualifier)) {

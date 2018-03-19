@@ -9,9 +9,10 @@
 	flex: 1
 
 .container
-	// max-width: 400px
 	margin: 0 auto
-  padding: 0px 20px
+  max-width: 300px
+  padding: 0px 15px
+  background-color: blue
 
 .row
   flex-direction: row
@@ -25,7 +26,6 @@
 .column-reverse
 	flex-direction: column-reverse
 
-
 .nowrap
 	flex-wrap: nowrap
 
@@ -34,24 +34,6 @@
 
 .wrap-reverse
 	flex-wrap: wrap-reverse
-
-
-/* Flex Container */
-.container
-	max-width: 360px
-	margin: 0 auto
-	display: flex
-	border: 1px solid #ccc
-
-/* Flex Item */
-.item
-	/* O flex: 1 é necessário para que cada item se expanda ocupando o tamanho máximo do container. */
-	flex: 1
-	margin: 5px
-	background: tomato
-	text-align: center
-	font-size: 1.5em
-
 
 .row-nowrap
 	flex-flow: row nowrap
@@ -62,107 +44,43 @@
 .row-wrap
 	flex-flow: row wrap
 
-
 .flex-start
 	justify-content: flex-start
-
 
 .flex-end
 	justify-content: flex-end
 
-
 .center
 	justify-content: center
-
 
 .space-between
 	justify-content: space-between
 
-
 .space-around
 	justify-content: space-around
 
-
-/* Flex Container */
-.container
-	max-width: 420px
-	margin: 0 auto
-	display: flex
-	border: 1px solid #ccc
-
-
 .column
-	min-height: 200px
 	flex-direction: column
-
-
-/* Flex Item */
-.item
-	margin: 5px
-	padding: 0 10px
-	background: tomato
-	text-align: center
-	font-size: 1.5em
-
-
-/* Indica que o conteúdo deve se expandir */
-.flex
-	flex: 1
-
 
 .stretch
 	align-items: stretch
 
-
-.flex-start
-	align-items: flex-start
-
-
-.flex-end
-	align-items: flex-end
-
-
-.center
-	align-items: center
-
-
 .baseline
 	align-items: baseline
-
-
-.stretch
-	align-content: stretch
-
-
-.flex-start
-	align-content: flex-start
-
-
-.flex-end
-	align-content: flex-end
-
-
-.center
-	align-content: center
-
 
 .space-between
 	align-content: space-between
 
-
 .space-around
 	align-content: space-around
-
 
 /* Os itens não se expandem para ocupar o container. */
 .grow0
 	flex-grow: 0
 
-
 /* Os itens se expandem igualmente para ocupar o container. Utilizando apenas o flex-grow, o crescimento é distribuído igualmente antes e depois do conteúdo de cada elemento. (pois por padrão o flex-basis é auto) */
 .grow1
 	flex-grow: 1
-
 
 /* Os itens se expandem duas vezes mais que aqueles com flex-grow: 1 */
 .grow2

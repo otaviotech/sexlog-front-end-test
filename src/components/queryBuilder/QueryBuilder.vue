@@ -1,38 +1,81 @@
 <template>
-  <div>
-    <form>
-      <app-input  labelText="Pesquise um usuário"
-                  class="classeDoInput"
-                  inputId="idDoInput"
-                  inputPlaceholder="Pesquise um usuário"
-                  v-model="query.params.q"></app-input>
-      <app-select label-text="Pesquisar em"
-                  inputPlaceholder="Selecione o filtro"
-                  :options="inFilterOptions"
-                  input-id="asdf"
-                  v-model="inFilter"
-                  :initValue="inFilter"></app-select>
+  <div class="query-builder">
+    <div class="inputs-wrapper">
 
-      <app-select label-text="Ordenar por"
-                  inputPlaceholder="Selecione o filtro"
-                  :options="userSortingOptions"
-                  input-id="asdf"
-                  v-model="query.params.sort"
-                  :initValue="query.params.sort"></app-select>
+      <div class="query-builder-item">
+        <app-input  labelText="Pesquise um usuário"
+                    class="classeDoInput"
+                    inputId="idDoInput"
+                    inputPlaceholder="Pesquise um usuário"
+                    v-model="query.parameters.q"></app-input>
+      </div>
 
-      <app-select label-text="Ordem"
-                  inputPlaceholder="Selecione o filtro"
-                  :options="orderingOptions"
-                  input-id="asdf"
-                  v-model="query.params.order"
-                  :initValue="query.params.order"></app-select>
+      <div class="query-builder-item">
+        <app-select label-text="Pesquisar em"
+                    inputPlaceholder="Selecione o filtro"
+                    :options="inFilterOptions"
+                    input-id="asdf"
+                    v-model="inFilter"
+                    :initValue="inFilter"></app-select>
+      </div>
 
-      <button class="btn primary">Pesquisar</button>
+      <div class="query-builder-item">
+        <app-select label-text="Ordenar por"
+                    inputPlaceholder="Selecione o filtro"
+                    :options="userSortingOptions"
+                    input-id="asdf"
+                    v-model="query.parameters.sort"
+                    :initValue="query.parameters.sort"></app-select>
+      </div>
 
-    </form>
+      <div class="query-builder-item">
+        <app-select label-text="Ordem"
+                    inputPlaceholder="Selecione o filtro"
+                    :options="orderingOptions"
+                    input-id="asdf"
+                    v-model="query.parameters.order"
+                    :initValue="query.parameters.order"></app-select>
+      </div>
+    </div>
+      <button class="btn primary perform-search-button btn-block"
+              type="button"
+              @click="submit">
+              Pesquisar
+      </button>
   </div>
 </template>
+<style lang="sass" scoped>
+  .query-builder
+    padding-top: 20px
+    display: flex
+    flex-diretion: row
+    flex-wrap: wrap
+    justify-content: space-between
+    align-items: center
 
+  .inputs-wrapper
+    flex: 1
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: space-around
+    align-content: flex-start
+
+  .query-builder-item
+    // flex: 1
+    // max-width: 300px
+    max-width: 300px
+    min-width: 300px
+    // min-width: 10%
+    // align-items: center
+    margin-right: 5px
+    // flex-wrap: wrap
+
+  @media only screen and (min-width : 1224px)
+    .btn-block
+      margin: 0 15px
+
+</style>
 <script>
 import AppInput from '@/components/UIComponents/Input';
 import AppSelect from '@/components/UIComponents/AppSelect';
@@ -45,13 +88,13 @@ export default {
   },
   data: () => ({
     query: {
-      params: {
+      parameters: {
         q: '', // The search terms.
         sort: 'followers', // followers | repositories | joined
         order: 'desc', // asc | desc
       },
+      qualifiers: [],
     },
-    texto: '',
     inFilterOptions: [
       { label: 'Login', value: 'login' },
       { label: 'Nome', value: 'fullname' },
@@ -72,11 +115,9 @@ export default {
     onInFilterInput(newValue) {
       this.inFilter = newValue;
     },
+    submit() {
+      this.$emit('submit', this.query);
+    },
   },
 };
 </script>
-
-<style>
-
-
-</style>
