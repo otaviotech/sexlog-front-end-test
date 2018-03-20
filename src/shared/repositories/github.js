@@ -5,7 +5,6 @@ const GithubClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/vnd.github.v3+json',
-    Authorization: 'Basic b3RhdmlvdGVjaDpSZnB1YWd1aXRhcjE=',
   },
 });
 

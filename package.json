@@ -13,6 +13,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@deveodk/vue-toastr": "^1.0.4",
+    "load-awesome": "github:danielcardoso/load-awesome",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
     "normalize.css": "^8.0.0",

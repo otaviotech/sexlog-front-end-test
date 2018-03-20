@@ -3,18 +3,17 @@ import GithubRepository from '@/shared/repositories/github';
 import { mutationTypes } from './mutations';
 
 export default {
-  searchUser({ commit }, payload) {
-    // dispatch('common/mostrarCarregando', true, { root: true });
+  searchUser({ commit, dispatch }, payload) {
+    dispatch('common/showLoading', true, { root: true });
     const queryString = QueryBuilderService.stringifyQueryObject(payload);
 
     GithubRepository.Users.Search(queryString)
       .then((res) => {
-        // dispatch('common/mostrarCarregando', true, { root: true });
+        dispatch('common/showLoading', false, { root: true });
         commit(mutationTypes.SET_USER_SEARCH_RESULTS, res.data.items);
       })
       .catch(() => {
-        // dispatch('common/mostrarCarregando', true, { root: true });
-        // err.foo();
+        dispatch('common/showLoading', false, { root: true });
       });
   },
 };

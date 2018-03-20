@@ -13,19 +13,19 @@ input[type="text"], textarea, select
   width: 100%
   max-width: 100%
   margin-bottom: 1em
-  -webkit-transition: all 0.20s ease-in-out;
-  -moz-transition: all 0.20s ease-in-out;
-  -ms-transition: all 0.20s ease-in-out;
-  -o-transition: all 0.20s ease-in-out;
-  outline: none;
-  padding: 3px 10px;
-  margin: 5px 1px 1.3em 0px;
-  border: 1px solid #DDDDDD;
+  -webkit-transition: all 0.20s ease-in-out
+  -moz-transition: all 0.20s ease-in-out
+  -ms-transition: all 0.20s ease-in-out
+  -o-transition: all 0.20s ease-in-out
+  outline: none
+  padding: 3px 10px
+  margin: 5px 1px 1.3em 0px
+  border: 1px solid #DDDDDD
   &:focus
     outline: none
     border: solid 1px $oc-cyan-4
     box-shadow: 0 0 5px $oc-cyan-4
-    padding: 3px 10px;
+    padding: 3px 10px
     margin: 5px 1px 1.3em 0px
     border: 1px solid rgba(81, 203, 238, 1)
 
@@ -75,3 +75,19 @@ hr
   border: 0
   height: 1px
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))
+
+.fade-enter-active, .fade-leave-active
+  transition-property: opacity
+  transition-duration: .25s
+
+.fade-enter-active
+  transition-delay: .25s
+
+.fade-enter, .fade-leave-active
+  opacity: 0
+
+.toast-container > div
+  width: 90% !important
+
+.toast-bottom-center
+  bottom: 40px

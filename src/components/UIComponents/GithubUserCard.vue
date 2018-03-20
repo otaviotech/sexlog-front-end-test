@@ -1,14 +1,18 @@
 <template>
   <div class="gh-card">
     <div class="img-wrapper">
-      <img :src="avatarUrl" :alt="login + '-avatar'">
+      <img :src="avatarUrl" :alt="login + '-avatar'" class="gh-card-avatar-img">
     </div>
     <div class="information-wrapper">
-      <p class="username">{{ login }}</p>
+      <p class="username">
+        <router-link :to="{ name: 'UserDetail', params: { username: login } }">
+          @{{ login }}
+        </router-link>
+      </p>
       <hr />
       <ul>
         <li>
-          <a :href="githubPageLink" target="_blank">Pagina no Github</a><br>
+          <a :href="githubPageLink" target="_blank" class="gh-card-gh-pl">Pagina no Github</a><br>
         </li>
         <li>
           <router-link :to="{ name: 'UserDetail', params: { username: login } }">
@@ -83,4 +87,18 @@ export default {
 
   .gh-card .information-wrapper ul li a
     font-size: 0.9em
+
+  p a
+    color: $oc-gray-8
+    font-weight: 600
+    transition: 0.3s
+    &:hover
+      color: $oc-gray-6
+      transition: 0.3s
+
+  a
+    color: $oc-gray-6
+    transition: 0.3s
+    &:hover
+      color: $oc-gray-8
 </style>

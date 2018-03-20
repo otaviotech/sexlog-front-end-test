@@ -1,13 +1,12 @@
 <template>
   <div class="root">
-    <div :class="wrapperClass" class="wrapper-class">
-      <div :class="labelWrapperClass" class="label-wrapper-class">
+    <div :class="wrapperClass">
+      <div :class="labelWrapperClass">
         <label :for="inputId" :class="labelClass" :id="labelId">{{ labelText }}</label>
       </div>
       <div :class="inputWrapperClass">
         <input type="text"
               :class="inputClass"
-              class="input-class"
               :id="inputId"
               :placeholder="inputPlaceholder"
               @input="onTextFieldInput" />
@@ -65,17 +64,4 @@ export default {
 };
 </script>
 
-<style lang="sass">
-  // .root
-  //   display: flex
-  //   flex-direction: row
-  //   align-items: center
-  //   flex-wrap: wrap
-
-  // .wrapper-class, .label-wrapper-class, .inputWrapperClass
-  //   flex: 1
-  //   display: flex
-  //   flex-direction: column
-
-  // , .label-wrapper-class, .inputWrapperClass
-</style>
+<style lang="sass"></style>

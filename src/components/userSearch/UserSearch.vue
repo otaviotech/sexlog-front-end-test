@@ -39,6 +39,11 @@ export default {
   }),
   methods: {
     performSearch(query) {
+      if (!query.parameters.q.length) {
+        // mostrar erro.
+        this.$toastr('info', 'Preencha os campos corretamente.');
+        return;
+      }
       this.searchUser(query);
     },
   },

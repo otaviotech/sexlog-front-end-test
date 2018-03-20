@@ -17,7 +17,7 @@
           <tbody>
             <tr v-for="rep in sortedRepos" :key="rep.id">
               <td>
-                <router-link :to="getRouteObject(rep)">User</router-link></td>
+                <router-link :to="getRouteObject(rep)">{{ rep.name }}</router-link></td>
               <td>{{ rep.watchers_count }}</td>
               <td>{{ rep.stargazers_count }}</td>
               <td>{{ rep.forks_count }}</td>

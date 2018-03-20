@@ -12,6 +12,9 @@
                class="repository-badge"></badge>
     </div>
     <p v-html="repository.description"></p>
+    <div class="voltar-wrapper">
+      <button class="btn primary" @click="voltar">Voltar para o usuário</button>
+    </div>
   </div>
 </template>
 
@@ -26,6 +29,11 @@ export default {
   ],
   components: {
     [Badge.name]: Badge,
+  },
+  methods: {
+    voltar() {
+      this.$router.go(-1);
+    },
   },
   beforeMount() {
     this.getRepository({
@@ -61,4 +69,8 @@ export default {
     padding: 20px
     display: flex
     flex-direction: column
+
+  .voltar-wrapper
+    max-width: 300px
+    margin: 0 auto
 </style>

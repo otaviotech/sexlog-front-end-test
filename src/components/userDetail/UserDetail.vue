@@ -22,6 +22,9 @@
     </div>
     <img v-if="user" :src="user.avatar_url" :alt="user.login">
     <repositories-list :repositories="userRepos" v-if="userRepos.length"></repositories-list>
+    <div class="voltar-wrapper">
+      <button class="btn primary" @click="voltar">Voltar para a busca</button>
+    </div>
   </div>
 </template>
 
@@ -38,6 +41,11 @@ export default {
   components: {
     [RepositoriesList.name]: RepositoriesList,
     [Badge.name]: Badge,
+  },
+  methods: {
+    voltar() {
+      this.$router.replace({ path: '/' });
+    },
   },
   beforeMount() {
     this.getUser(this.$route.params.username);
@@ -79,4 +87,10 @@ export default {
 
   .wrapper
     padding-top: 20px
+
+  .voltar-wrapper
+    display: flex
+    flex-direction: row
+    justify-content: flex-end
+    padding: 20px
 </style>
