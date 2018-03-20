@@ -45,7 +45,7 @@ npm install
 
 # Para executar os testes conforme os arquivos são alterados.
 # "Live TDD" do Jest.
-npm run unit-tdd
+npm run tdd
 
 # Para executar o webpack-dev-server,
 # que por padrão será executado na porta 8080,
