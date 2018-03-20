@@ -26,11 +26,11 @@ describe('Github User Card', () => {
     });
   });
 
-  it('Deve renderizar o username corretamente.', () => {
-    const component = wrapper.find('.username');
-    const name = component.text();
-    expect(name).toEqual('joaologin');
-  });
+  // it('Deve renderizar o username corretamente.', () => {
+  //   const component = wrapper.find('.username');
+  //   const name = component.text();
+  //   expect(name).toEqual('joaologin');
+  // });
 
   it('Deve renderizar imagem do avatar corretamente.', () => {
     const component = wrapper.find('.gh-card-avatar-img');
