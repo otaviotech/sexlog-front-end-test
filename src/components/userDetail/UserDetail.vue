@@ -57,7 +57,7 @@ export default {
 <style lang="sass" scoped>
   @import '~open-color/open-color.scss'
 
-  h1
+  .wrapper h1
     color: $oc-gray-7
     text-align: center
     font-size: 3em

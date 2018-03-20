@@ -40,10 +40,15 @@ export default {
   methods: {
     performSearch(query) {
       if (!query.parameters.q.length) {
-        // mostrar erro.
+        this.$toastr('info', 'Você tem que me dizer o que pesquisar!');
+        return;
+      }
+
+      if (!query.parameters.order || !query.parameters.sort) {
         this.$toastr('info', 'Preencha os campos corretamente.');
         return;
       }
+
       this.searchUser(query);
     },
   },

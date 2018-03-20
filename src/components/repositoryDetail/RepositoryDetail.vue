@@ -1,6 +1,6 @@
 <template>
   <div class="repo-info" v-if="repository">
-    <h1>{{ repository.name }}
+    <h1 class="h1">{{ repository.name }}
       <a :href="repository.html_url" target="_blank">
         <i class="fa fa-external-link-alt"></i>
       </a>
@@ -47,14 +47,12 @@ export default {
 <style lang="sass">
   @import '~open-color/open-color.scss'
 
-  h1
+  .h1
     color: $oc-gray-7
     text-align: center
     font-size: 3em
-
-  h1 a
     text-decoration: none
-    color: $oc-gray-3
+    // color: $oc-gray-3
 
   p
     padding: 20px
@@ -70,7 +68,7 @@ export default {
     display: flex
     flex-direction: column
 
-  .voltar-wrapper
+  .voltar-wrapper button
     max-width: 300px
-    margin: 0 auto
+    margin: 15px auto
 </style>
