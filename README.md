@@ -52,12 +52,12 @@ npm run tdd
 # mas se esta já estiver em uso, será substituída por outra,
 # até que encontre uma disponível.
 # OBS: HotReload! \o/
-npm run dev # --host 0.0.0.0 se deseja que esteja acessível na sua rede local.
+npm run dev # -- --host 0.0.0.0 se deseja que esteja acessível na sua rede local.
 ```
 
 ## Testes de unidade
 
-Os testes de unidades podem ser executados com os seguintes comandos:
+Os testes de unidade podem ser executados com os seguintes comandos:
 
 ```bash
 npm run unit
